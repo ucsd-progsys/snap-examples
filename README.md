@@ -11,6 +11,6 @@ RJ Todo
 
 + build
 + test/play
-* convert DB backend to haskellDB  ---------------- HEREHEREHEREHEREHERE
+* convert DB backend to haskellDB/persistent ---------------- HEREHEREHEREHEREHERE
 - convert JS frontend to fay
 - convert authorization to something fancy (oauth)

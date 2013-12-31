@@ -1,20 +1,13 @@
 {-# LANGUAGE OverloadedStrings, ScopedTypeVariables #-}
 
-module Db (
-    User(..)
-  , Todo(..)
-  , createTables
-  , saveTodo
-  , listTodos) where
+module Db (createTables, saveTodo, listTodos) where
 
 import           Control.Applicative
 import           Control.Monad
 import           Data.Aeson
 import           Data.Int (Int64)
-
 import           Data.Maybe
 import qualified Data.Text as T
-
 import           Database.SQLite.Simple
 import           Types
 
