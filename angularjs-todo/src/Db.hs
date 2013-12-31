@@ -11,32 +11,12 @@ import           Control.Applicative
 import           Control.Monad
 import           Data.Aeson
 import           Data.Int (Int64)
+
 import           Data.Maybe
 import qualified Data.Text as T
+
 import           Database.SQLite.Simple
-
-data User = User Int T.Text
-
-data Todo =
-  Todo
-  { todoId :: Maybe Int64
-  , todoText :: T.Text
-  , todoDone :: Bool
-  } deriving (Show)
-
-instance FromJSON Todo where
-  parseJSON (Object v) =
-    Todo <$> optional (v .: "id")
-         <*> v .: "text"
-         <*> v .: "done"
-  parseJSON _ = mzero
-
-instance ToJSON Todo where
-  toJSON (Todo i text done) =
-    object [ "id" .= fromJust i
-           , "text" .= text
-           , "done" .= done
-           ]
+import           Types
 
 instance FromRow Todo where
   fromRow = Todo <$> field <*> field <*> field

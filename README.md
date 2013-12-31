@@ -9,8 +9,8 @@ See [my AngularJS + Haskell blog post](http://nurpax.github.io/posts/2013-01-13-
 RJ Todo
 -------
 
-- build
-- test/play
-- convert DB backend to haskellDB
++ build
++ test/play
+* convert DB backend to haskellDB  ---------------- HEREHEREHEREHEREHERE
 - convert JS frontend to fay
 - convert authorization to something fancy (oauth)
