@@ -33,6 +33,7 @@ import qualified Heist.Interpreted as I
 ------------------------------------------------------------------------------
 import           Application
 import qualified Db
+import           Types 
 import           Util
 
 type H = Handler App App
@@ -79,7 +80,7 @@ handleNewUser =
         lift (with auth (forceLogin user) >> redirect "/")
 
 -- | Run actions with a logged in user or go back to the login screen
-withLoggedInUser :: (Db.User -> H ()) -> H ()
+withLoggedInUser :: (User -> H ()) -> H ()
 withLoggedInUser action =
   with auth currentUser >>= go
   where
@@ -88,7 +89,7 @@ withLoggedInUser action =
     go (Just u) = logRunEitherT $ do
       uid  <- tryJust "withLoggedInUser: missing uid" (userId u)
       uid' <- hoistEither (reader T.decimal (unUid uid))
-      return $ action (Db.User uid' (userLogin u))
+      return $ action (User uid' (userLogin u))
 
 -- | Run an IO action with an SQLite connection
 withDb :: (S.Connection -> IO a) -> H a
